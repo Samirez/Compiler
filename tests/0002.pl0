@@ -1,0 +1,4 @@
+{ 0002: const section}
+const on = 1;
+{multiple constant declaration}
+const a = 2, b = 3;

@@ -1,0 +1,4 @@
+{0003: variable section}
+var a;
+{multiple variables}
+var b, c;

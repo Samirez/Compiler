@@ -1,0 +1,16 @@
+{0007.pl0 all sections together}
+
+const one = 1, two = 2;
+var a, b;
+
+procedure empty;
+;
+
+procedure alsoempty;
+;
+
+
+var x;
+
+x := x + ((x - x) * x) / x
+.
