@@ -74,7 +74,8 @@ static int ident(void)
     } else if (!strcmp(token, "then"))
     {
         return TOK_THEN;
-    } else if (!strcmp(token, "else")){
+    } else if (!strcmp(token, "else"))
+    {
         return TOK_ELSE;
     }
      else if (!strcmp(token, "while"))
