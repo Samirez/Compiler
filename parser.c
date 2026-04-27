@@ -38,6 +38,7 @@ void expect(int match)
     if (match != type)
     {
         parser_error("syntax error");
+        printf("match is %d and type is %d", match, type);
     }
     next();
 }

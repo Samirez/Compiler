@@ -11,6 +11,7 @@
 #define TOK_END		'E'
 #define TOK_IF		'i'
 #define TOK_THEN	'T'
+#define TOK_ELSE	'e'
 #define TOK_WHILE	'W'
 #define TOK_DO		'D'
 #define TOK_ODD		'O'

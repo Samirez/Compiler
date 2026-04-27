@@ -36,6 +36,10 @@ void cg_semicolon(void)
 
 void cg_var(void)
 {
+    if (proc == 0)
+    {
+        aout("static ");
+    }
     aout("long %s;\n", token);
 }
 
@@ -98,8 +102,13 @@ void cg_symbol(void)
             aout("if(");
             break;
         case TOK_THEN:
+            aout("){");
+            break;
         case TOK_DO:
             aout(")");
+            break;
+        case TOK_ELSE:
+            aout(";}else{");
             break;
         case TOK_ODD:
             aout("(");
