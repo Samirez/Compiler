@@ -18,7 +18,6 @@ struct symtab {
 };
 
 
-
 void initsymtab(void);
 void addsymbol(int type);
 void destroysymbols(void);
