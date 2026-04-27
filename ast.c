@@ -109,6 +109,7 @@ void symcheck(int check)
             {
                 PERROR_FMT("must not be a procedure: %s", token);
             }
+            break;
         case CHECK_CALL:
             if (ret->type != TOK_PROCEDURE && ret->type != TOK_FORWARD)
             {

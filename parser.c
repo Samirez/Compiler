@@ -12,6 +12,11 @@ void parse(void)
 {
     next();
     block();
+    while (type == TOK_SEMICOLON)
+    {
+        expect(TOK_SEMICOLON);
+        statement();
+    }
     expect(TOK_DOT);
 
     if (type != 0)
@@ -48,81 +53,52 @@ void block(void)
     {
         parser_error("nesting depth exceeded");
     }
-    if (type == TOK_CONST)
+    while (type == TOK_CONST)
     {
         expect(TOK_CONST);
-        if (type == TOK_IDENT)
+        do
         {
             addsymbol(TOK_CONST);
             cg_const();
-        }
-        expect(TOK_IDENT);
-        expect(TOK_EQUAL);
-        if (type == TOK_NUMBER)
-        {
-            cg_symbol();
-            cg_semicolon();
-        }
-        expect(TOK_NUMBER);
-        while (type == TOK_COMMA)
-        {
-            expect(TOK_COMMA);
-            if (type == TOK_IDENT)
-            {
-                addsymbol(TOK_CONST);
-                cg_const();
-            }
             expect(TOK_IDENT);
             expect(TOK_EQUAL);
-            if (type == TOK_NUMBER)
-            {
-                cg_symbol();
-                cg_semicolon();
-            }
+            cg_symbol();
             expect(TOK_NUMBER);
-        }
+            if (type == TOK_COMMA)
+            {
+                expect(TOK_COMMA);
+            }
+            else
+            {
+                break;
+            }
+        } while (1);
         expect(TOK_SEMICOLON);
     }
-    if (type == TOK_VAR)
+    while (type == TOK_VAR)
     {
         expect(TOK_VAR);
-        if (type == TOK_IDENT)
+        do
         {
-            addsymbol(TOK_IDENT);
+            addsymbol(TOK_VAR);
             cg_var();
-        }
-        expect(TOK_IDENT);
-        if (type == TOK_SIZE)
-        {
-            expect(TOK_SIZE);
-            if (type == TOK_NUMBER)
-            {
-                arraysize();
-                cg_array();
-            }
-        }
-        cg_semicolon();
-        while (type == TOK_COMMA)
-        {
-            expect(TOK_COMMA);
-            if (type == TOK_IDENT)
-            {
-                addsymbol(TOK_VAR);
-                cg_var();
-            }
             expect(TOK_IDENT);
             if (type == TOK_SIZE)
             {
                 expect(TOK_SIZE);
-                if (type == TOK_NUMBER)
-                {
-                    arraysize();
-                    cg_array();
-                    expect(TOK_NUMBER);
-                }
+                arraysize();
+                cg_array();
+                expect(TOK_NUMBER);
             }
-            cg_semicolon();
-        }
+            if (type == TOK_COMMA)
+            {
+                expect(TOK_COMMA);
+            }
+            else
+            {
+                break;
+            }
+        } while (1);
         expect(TOK_SEMICOLON);
         cg_crlf();
     }
