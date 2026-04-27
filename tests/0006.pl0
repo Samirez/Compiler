@@ -1,4 +1,4 @@
 {0006.pl0 arithmetic section}
 var x;
-x := x + ((x-x) * x) / x:
+x := x + ((x-x) * x) / x;
 .

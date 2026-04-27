@@ -9,8 +9,7 @@ procedure empty;
 procedure alsoempty;
 ;
 
-
 var x;
 
-x := x + ((x - x) * x) / x
+x := x + ((x - x) * x) / x;
 .

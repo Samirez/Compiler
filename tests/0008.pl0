@@ -11,7 +11,7 @@ begin
   while i < 2 do
   begin
     writeChar x;
-    i := i + 1
+    i := i + 1;
   end;
   x := x + 3;
   writeChar x;
@@ -29,7 +29,7 @@ begin
   writeChar x;
   x := x / 3;
   writeChar x;
-  writeChar 10
+  writeChar 10;
 end;
 
 call hello

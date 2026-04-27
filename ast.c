@@ -26,6 +26,7 @@ void addsymbol(int type)
 
     for (current = head; current != NULL; current = current->next)
     {
+        tail = current;
         if (!strcmp(current->name, token) && current->depth == (depth-1))
         {
             if (current->type == TOK_FORWARD)
@@ -34,14 +35,7 @@ void addsymbol(int type)
             } else {
                 PERROR_FMT("duplicate symbol: %s", token);
             }
-
         }
-        if (current->next == NULL)
-        {
-            break;
-        }
-        current = current->next;
-        tail = current;
     }
 
     if ((newtab = malloc(sizeof(struct symtab))) == NULL)
