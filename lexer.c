@@ -111,6 +111,9 @@ static int ident(void)
     } else if (!strcmp(token, "forward"))
     {
         return TOK_FORWARD;
+    } else if (!strcmp(token, "exit"))
+    {
+        return TOK_EXIT;
     }
 
     return TOK_IDENT;

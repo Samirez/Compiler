@@ -15,8 +15,18 @@ static void aout(const char *fmt, ...)
 
 void cg_init(void)
 {
-    aout("#include <stdio.h>\n");
-    aout("static char __stdin[24];\n\n");
+    aout("#include <limits.h>\n");
+	aout("#include <stdio.h>\n");
+	aout("#include <stdlib.h>\n");
+	aout("#include <string.h>\n\n");
+	aout("static char __stdin[24];\n");
+	aout("static const char *__errstr;\n\n");
+	aout("static long __writestridx;\n\n");
+}
+
+void cg_exit(void)
+{
+    aout("exit(");
 }
 
 void cg_end(void)

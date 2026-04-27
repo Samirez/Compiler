@@ -7,6 +7,7 @@ extern int proc;
 extern char __errstr;
 
 void cg_init(void);
+void cg_exit(void);
 void cg_end(void);
 void cg_const(void);
 void cg_semicolon(void);

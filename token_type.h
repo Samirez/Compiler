@@ -40,6 +40,7 @@
 #define TOK_WRITESTR 'r'
 #define TOK_STRING '"'
 #define TOK_FORWARD 'F'
+#define TOK_EXIT 'X'
 
 
 #endif // TOKEN_TYPE_H_INCLUDED
