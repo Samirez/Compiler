@@ -56,30 +56,40 @@ void block(void)
     while (type == TOK_CONST)
     {
         expect(TOK_CONST);
-        do
+        addsymbol(TOK_CONST);
+        cg_const();
+        expect(TOK_IDENT);
+        expect(TOK_EQUAL);
+        cg_symbol();
+        expect(TOK_NUMBER);
+        while (type == TOK_COMMA)
         {
+            expect(TOK_COMMA);
             addsymbol(TOK_CONST);
             cg_const();
             expect(TOK_IDENT);
             expect(TOK_EQUAL);
             cg_symbol();
             expect(TOK_NUMBER);
-            if (type == TOK_COMMA)
-            {
-                expect(TOK_COMMA);
-            }
-            else
-            {
-                break;
-            }
-        } while (1);
+        }
         expect(TOK_SEMICOLON);
     }
     while (type == TOK_VAR)
     {
         expect(TOK_VAR);
-        do
+        addsymbol(TOK_VAR);
+        cg_var();
+        expect(TOK_IDENT);
+        if (type == TOK_SIZE)
         {
+            expect(TOK_SIZE);
+            arraysize();
+            cg_array();
+            expect(TOK_NUMBER);
+        }
+        while (type == TOK_COMMA)
+        {
+            expect(TOK_COMMA);
             addsymbol(TOK_VAR);
             cg_var();
             expect(TOK_IDENT);
@@ -90,15 +100,7 @@ void block(void)
                 cg_array();
                 expect(TOK_NUMBER);
             }
-            if (type == TOK_COMMA)
-            {
-                expect(TOK_COMMA);
-            }
-            else
-            {
-                break;
-            }
-        } while (1);
+        }
         expect(TOK_SEMICOLON);
         cg_crlf();
     }
@@ -130,6 +132,37 @@ void block(void)
         expect(TOK_SEMICOLON);
         proc = 0;
         destroysymbols();
+    }
+
+    while (type == TOK_VAR)
+    {
+        expect(TOK_VAR);
+        addsymbol(TOK_VAR);
+        cg_var();
+        expect(TOK_IDENT);
+        if (type == TOK_SIZE)
+        {
+            expect(TOK_SIZE);
+            arraysize();
+            cg_array();
+            expect(TOK_NUMBER);
+        }
+        while (type == TOK_COMMA)
+        {
+            expect(TOK_COMMA);
+            addsymbol(TOK_VAR);
+            cg_var();
+            expect(TOK_IDENT);
+            if (type == TOK_SIZE)
+            {
+                expect(TOK_SIZE);
+                arraysize();
+                cg_array();
+                expect(TOK_NUMBER);
+            }
+        }
+        expect(TOK_SEMICOLON);
+        cg_crlf();
     }
 
     if (proc == 0)

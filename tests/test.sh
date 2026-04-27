@@ -16,7 +16,7 @@ fi
 
 # Run the tests
 for i in *.pl0; do
-    /usr/bin/printf "%.4s... " $i
+    echo -n "${i%.pl0}... "
   "$COMPILER" $i
     if [ $? -eq 0 ] ; then
       echo ok
@@ -30,5 +30,5 @@ if [ $failures -eq 0 ] ; then
   echo "All tests passed!"
 else
   echo "$failures test(s) failed!"
-  exit 1
+  exit $failures
 fi

@@ -48,11 +48,19 @@ void addsymbol(int type)
 
     if ((newtab->name = strdup(token)) == NULL)
     {
-        perror("malloc failed");
+        perror("strdup failed");
     }
 
     newtab->next = NULL;
-    tail->next = newtab;
+
+    if (head == NULL)
+    {
+        head = newtab;
+    }
+    else
+    {
+        tail->next = newtab;
+    }
 }
 
 void destroysymbols(void)
@@ -115,6 +123,7 @@ void symcheck(int check)
             {
                 PERROR_FMT("must be a procedure: %s", token);
             }
+            break;
     }
 }
 
